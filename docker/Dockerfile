@@ -21,14 +21,8 @@ ENV LANG en_US.UTF-8
 RUN useradd -ms /bin/zsh dev && echo "dev:docker" | chpasswd && adduser dev sudo
 USER dev
 
-# terminal colors with xterm
-ENV TERM xterm
-
-# set the zsh theme
-ENV ZSH_THEME agnoster
-
-# run the installation script  
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+# run zsh installation script
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # set workdir
 WORKDIR /home/dev/workspace
