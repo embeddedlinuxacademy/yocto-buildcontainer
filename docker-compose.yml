@@ -3,5 +3,12 @@ services:
     build: docker
     volumes:
       - ./workspace:/home/dev/workspace
+    environment:
+      - DISPLAY=$DISPLAY
+    devices:
+      - "/dev/net/tun:/dev/net/tun"
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
     stdin_open: true # docker run -i
     tty: true        # docker run -t

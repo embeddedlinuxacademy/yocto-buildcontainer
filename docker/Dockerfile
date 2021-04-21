@@ -1,15 +1,17 @@
 FROM ubuntu:18.04
 
-# install the tools
+# install general tools
 RUN apt-get update && \
-  apt-get install -y sudo curl git-core gnupg linuxbrew-wrapper locales \
-  nodejs zsh wget nano npm fonts-powerline tmux vim
+    DEBIAN_FRONTEND="noninteractive" apt-get install --no-install-recommends -y \
+    apt-utils sudo curl git-core gnupg linuxbrew-wrapper locales \
+    nodejs zsh wget nano npm fonts-powerline tmux vim
 
 # install yocto tools
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib \
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install --no-install-recommends -y \
+    gawk wget git-core diffstat unzip texinfo gcc-multilib \
     build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 \
-    libegl1-mesa libsdl1.2-dev pylint3 xterm
+    libegl1-mesa libsdl1.2-dev pylint3 iproute2 file iptables
 
 # set up locale
 RUN locale-gen en_US.UTF-8
