@@ -1,13 +1,21 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+
+# variables
+ENV USER=dev
+ENV USER_ID=1000
+ENV PASSWORD=docker
+ENV WORKSPACE=/home/$USER/workspace
 
 # install general tools
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --no-install-recommends -y \
-    apt-utils sudo curl git-core gnupg linuxbrew-wrapper locales \
+    DEBIAN_FRONTEND="noninteractive" apt-get install \
+    --no-install-recommends -y \
+    apt-utils sudo curl git-core gnupg locales \
     nodejs zsh wget nano npm fonts-powerline tmux vim
 
 # install yocto tools
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install --no-install-recommends -y \
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install \
+    --no-install-recommends -y \
     gawk wget git-core diffstat unzip texinfo gcc-multilib \
     build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 \
@@ -18,14 +26,16 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 # add a user
-RUN useradd -ms /bin/zsh dev && echo "dev:docker" | chpasswd && adduser dev sudo
-USER dev
+RUN useradd -u $USER_ID -ms /bin/zsh $USER && \
+    echo "$USER:$PASSWORD" | chpasswd && adduser $USER sudo
+USER $USER
 
 # run zsh installation script
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+RUN sh -c "$(curl -fsSL \
+https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # set workdir
-WORKDIR /home/dev/workspace
+WORKDIR $WORKSPACE
 
 # start zsh
 ENTRYPOINT [ "/bin/zsh" ]
