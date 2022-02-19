@@ -19,7 +19,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install \
     gawk wget git-core diffstat unzip texinfo gcc-multilib \
     build-essential chrpath socat cpio python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 \
-    libegl1-mesa libsdl1.2-dev pylint3 iproute2 file iptables
+    libegl1-mesa libsdl1.2-dev pylint3 iproute2 file iptables zstd liblz4-tool
 
 # set up locale
 RUN locale-gen en_US.UTF-8
