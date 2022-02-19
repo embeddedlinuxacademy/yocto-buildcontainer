@@ -1,5 +1,6 @@
 services:
   dev-env:
+    image: yocto-devcontainer:v0.2
     build: docker
     volumes:
       - ./workspace:/home/dev/workspace
