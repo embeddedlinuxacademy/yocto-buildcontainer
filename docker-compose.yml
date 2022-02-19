@@ -9,7 +9,6 @@ services:
       - "/dev/net/tun:/dev/net/tun"
     cap_add:
       - NET_ADMIN
-    hostname: yocto
     network_mode: "host"
     stdin_open: true # docker run -i
     tty: true        # docker run -t
