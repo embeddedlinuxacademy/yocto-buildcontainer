@@ -31,6 +31,7 @@ RUN useradd -u $USER_ID -ms /bin/zsh $USER && \
 USER $USER
 
 # run zsh installation script
+RUN git config --global init.defaultBranch main
 RUN sh -c "$(curl -fsSL \
 https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
