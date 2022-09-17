@@ -12,16 +12,17 @@ The user for the image is *dev* with password *docker*.
 * [Docker-Compose](https://github.com/docker/compose)
 * [zsh + ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 * [yocto](https://yoctoproject.org)
+* [kas](https://github.com/siemens/kas)
 
 
 ## Getting Started
 
 To start the development container use the following commands.
 
-### Usage
+### Startup of the development environment
 
 * Clone repository
-     ```
+    ```
     git clone https://github.com/embeddedlinuxacademy/yocto-buildcontainer
     ```
 
@@ -35,18 +36,35 @@ To start the development container use the following commands.
     docker-compose run dev-env 
     ```
 
-* Clone poky
+### Run simple bitbake command
+* Clone poky (and other layers)
     ```
     git clone --branch <yocto-version> git://git.yoctoproject.org/poky
     ```
-
 * Source build environment
     ```
     source poky/oe-init-build-env
     ```
+* [Optional] Adapt configuration
+  * Add additional layers to bblayers.conf
+  * Add configuration to local.conf
 
 * Start build
     ```
     bitbake <image-name>
     ```
 
+#### Use kas configuration
+* [Optional] Adapt default kas configuration in workspace/.config.yaml
+* Start build
+    ```
+    kas build
+    ```
+* [Optional] Attach to bitbake shell to run single bitbake commands
+    ```
+    kas shell
+    ```
+  or to use the bash instead of sh
+    ```
+    kas shell -c /bin/bash
+    ```
