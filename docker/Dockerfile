@@ -21,6 +21,8 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 \
     libegl1-mesa libsdl1.2-dev pylint3 iproute2 file iptables zstd liblz4-tool
 
+RUN pip install kas
+
 # set up locale
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
