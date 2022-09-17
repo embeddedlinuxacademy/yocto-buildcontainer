@@ -1,7 +1,11 @@
 services:
   dev-env:
-    image: yocto-devcontainer:v0.3
-    build: docker
+    # Use 'image' and 'build' options if changes in image are necessary or the
+    # build speed is higher than the download speed
+    #image: yocto-buildcontainer
+    #build: docker
+    # Use 'image' to download directly from registry
+    image: ghcr.io/embeddedlinuxacademy/yocto-buildcontainer/yocto-buildcontainer:0.3
     volumes:
       - ./workspace:/home/dev/workspace
     environment:
