@@ -1,0 +1,15 @@
+header:
+  version: 12
+machine: qemux86-64
+distro: poky
+repos:
+  poky:
+    url: "https://git.yoctoproject.org/git/poky"
+    refspec: kirkstone
+    path: layers/poky
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+
